@@ -1,8 +1,13 @@
 // import logo from './logo.svg';
 import './App.css';
+import Header from './components/Header';
+import Product from './components/Product';
 
 function App() {
-    return <h1>Hello World</h1>;
+    return <div className='wrapper'>
+        <Header />
+        <Product />
+    </div>;
 }
 
 export default App;
