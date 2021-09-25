@@ -22,14 +22,22 @@ class App extends Component {
             color: color,
         })
     }
+    receiveSize = (value) => {
+        if(this.state.fontSize + value >= 8 && this.state.fontSize + value <= 36){
+            this.setState({
+                fontSize: this.state.fontSize + value
+            })
+        }
+    }
+
     render(){
         return <div className='wrapper'>
                 <Header />
                 <div className='col-xs-12 col-sm-12 col-md-12 col-lg-12'>
                 <div className='app'>
                     <ColorPicker color={this.state.color} receiveColor={this.setActiveColor}/>
-                    <ChangeSize />
-                    <Result color={this.state.color} />
+                    <ChangeSize fontSize={this.state.fontSize} onChangeSize={this.receiveSize}/>
+                    <Result color={this.state.color} fontSize={this.state.fontSize} />
                     <Reset />
                 </div>
                 </div>
