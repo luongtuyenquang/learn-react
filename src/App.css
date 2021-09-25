@@ -6,3 +6,24 @@
 .img{
     width: 300px;
 }
+.btn {
+    padding: 5px 20px;
+    font-size: 16px;
+}
+.btn-success {
+    margin-right: 20px;
+}
+.panel-body {
+    background-color: #e6bcd3;
+}
+.panel-footer {
+    padding-top: 17px;
+    padding-bottom: 17px;
+}
+.result {
+    border: 1px solid #9c27b0;
+    padding: 10px;
+}
+.reset {
+    margin-top: 20px;
+}
