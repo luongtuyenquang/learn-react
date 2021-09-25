@@ -29,7 +29,14 @@ class App extends Component {
             })
         }
     }
-
+    resetDefault = (value) => {
+        if(value === true){
+            this.setState({
+                color: 'red',
+                fontSize: 15
+            })
+        }
+    }
     render(){
         return <div className='wrapper'>
                 <Header />
@@ -38,7 +45,7 @@ class App extends Component {
                     <ColorPicker color={this.state.color} receiveColor={this.setActiveColor}/>
                     <ChangeSize fontSize={this.state.fontSize} onChangeSize={this.receiveSize}/>
                     <Result color={this.state.color} fontSize={this.state.fontSize} />
-                    <Reset />
+                    <Reset onResetDefault={this.resetDefault}/>
                 </div>
                 </div>
             </div>;
