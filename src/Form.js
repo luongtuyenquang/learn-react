@@ -8,7 +8,8 @@ class Form extends Component {
         super()
         this.state = {
             inputUsername: '',
-            inputPassword: ''
+            inputPassword: '',
+            inputTextArea: ''
         }
     }
     handleChange = (e) => {
@@ -44,6 +45,13 @@ class Form extends Component {
                                             name="inputPassword"
                                             onChange={this.handleChange}
                                         /><br />  
+                                        <label>Mô tả:</label>
+                                        <textarea 
+                                            className="form-control" 
+                                            rows="3"
+                                            name="inputTextArea"
+                                            onChange={this.handleChange}
+                                        ></textarea><br />  
                                         <button type="submit" className="btn btn-primary">Lưu lại</button>
                                     </div>
                                 </form>
