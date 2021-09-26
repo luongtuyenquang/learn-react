@@ -10,7 +10,8 @@ class Form extends Component {
             inputUsername: '',
             inputPassword: '',
             inputTextArea: '',
-            inputSelect: 'male' //Mặc định không chọn thì value = rỗng
+            inputSelect: 'male', //Mặc định không chọn thì value = rỗng
+            inputRadio: 'yes'
         }
     }
     handleChange = (e) => {
@@ -59,6 +60,24 @@ class Form extends Component {
                                             <option value='female'>Nữ</option>
                                             <option value='other'>Khác</option>
                                         </select><br />
+                                        <div style={{display: 'flex'}}>
+                                            <label>Tôn giáo:</label>
+                                            <input type="radio" 
+                                                name="inputRadio" 
+                                                value="yes"
+                                                checked={this.state.inputRadio === 'yes'}
+                                                onChange={this.handleChange}
+                                                style={{marginLeft: 20 + 'px'}}/>
+                                            <label className="radio-inline" style={{paddingLeft: 5 + 'px'}}>Có</label>
+                                            <input type="radio" 
+                                                name="inputRadio" 
+                                                value="no"
+                                                checked={this.state.inputRadio === 'no'}
+                                                onChange={this.handleChange} 
+                                                style={{marginLeft: 20 + 'px'}}/>
+                                            <label className="radio-inline input-radio" style={{paddingLeft: 5 + 'px'}}>Không</label>
+                                            <br /><br />
+                                        </div>
                                         <button type="submit" className="btn btn-primary">Lưu lại</button>
                                     </div>
                                 </form>
