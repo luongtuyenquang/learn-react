@@ -9,7 +9,8 @@ class Form extends Component {
         this.state = {
             inputUsername: '',
             inputPassword: '',
-            inputTextArea: ''
+            inputTextArea: '',
+            inputSelect: 'male' //Mặc định không chọn thì value = rỗng
         }
     }
     handleChange = (e) => {
@@ -51,7 +52,13 @@ class Form extends Component {
                                             rows="3"
                                             name="inputTextArea"
                                             onChange={this.handleChange}
-                                        ></textarea><br />  
+                                        ></textarea><br /> 
+                                        <label>Giới tính:</label>
+                                        <select className="form-control" onChange={this.handleChange} name="inputSelect">
+                                            <option value='male'>Nam</option>
+                                            <option value='female'>Nữ</option>
+                                            <option value='other'>Khác</option>
+                                        </select><br />
                                         <button type="submit" className="btn btn-primary">Lưu lại</button>
                                     </div>
                                 </form>
