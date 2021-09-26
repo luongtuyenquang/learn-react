@@ -8,11 +8,15 @@ class Form extends Component {
         super()
         this.state = {
             inputUsername: '',
+            inputPassword: ''
         }
     }
     handleChange = (e) => {
+        // Handle multi input
+        const inputName = e.target.name
+        const inputValue = e.target.value
         this.setState({
-            inputUsername: e.target.value
+            [inputName]: inputValue
         })
     }
     handleSubmit =(e) => {
@@ -32,6 +36,12 @@ class Form extends Component {
                                         <input type="text"
                                             className="form-control" 
                                             name="inputUsername"
+                                            onChange={this.handleChange}
+                                        /><br />  
+                                        <label>User name:</label>
+                                        <input type="password"
+                                            className="form-control" 
+                                            name="inputPassword"
                                             onChange={this.handleChange}
                                         /><br />  
                                         <button type="submit" className="btn btn-primary">Lưu lại</button>
