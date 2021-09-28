@@ -11,13 +11,13 @@ class Form extends Component {
             inputPassword: '',
             inputTextArea: '',
             inputSelect: 'male', //Mặc định không chọn thì value = rỗng
-            inputRadio: 'yes'
+            inputRadio: 'yes',
         }
     }
     handleChange = (e) => {
         // Handle multi input
         const inputName = e.target.name
-        const inputValue = e.target.value
+        const inputValue = e.target.type === 'checkbox' ? e.target.checked: e.target.value
         this.setState({
             [inputName]: inputValue
         })

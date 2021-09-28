@@ -1,56 +1,39 @@
 // import logo from './logo.svg';
 import './App.css';
-import Header from './components/Header';
-// import Product from './components/Product';
-import ColorPicker from './components/ColorPicker';
-import ChangeSize from './components/ChangeSize';
-import Result from './components/Result';
-import Reset from './components/Reset';
-import { Component } from 'react';
+import Title from './components/Title';
+import AddTask from './components/AddTask';
+import Filter from './components/Filter';
+import ListTask from './components/ListTask';
 
-
-class App extends Component {
-    constructor(){
-        super()
-        this.state = {
-            color: 'red',
-            fontSize: 15
-        }
-    }
-    setActiveColor = (color) => {
-        this.setState({
-            color: color,
-        })
-    }
-    receiveSize = (value) => {
-        if(this.state.fontSize + value >= 8 && this.state.fontSize + value <= 36){
-            this.setState({
-                fontSize: this.state.fontSize + value
-            })
-        }
-    }
-    resetDefault = (value) => {
-        if(value === true){
-            this.setState({
-                color: 'red',
-                fontSize: 15
-            })
-        }
-    }
-    render(){
-        return <div className='wrapper'>
-                <Header />
-                <div className='col-xs-12 col-sm-12 col-md-12 col-lg-12'>
-                <div className='app'>
-                    <ColorPicker color={this.state.color} receiveColor={this.setActiveColor}/>
-                    <ChangeSize fontSize={this.state.fontSize} onChangeSize={this.receiveSize}/>
-                    <Result color={this.state.color} fontSize={this.state.fontSize} />
-                    <Reset onResetDefault={this.resetDefault}/>
+function App() {
+    return (
+        <div className='container'>
+            <Title />
+            <div className='row'>
+                <div className='col-xs-4 col-sm-4 col-md-4 col-lg-4'>
+                    <AddTask />
                 </div>
+                <div className='col-xs-8 col-sm-8 col-md-8 col-lg-8'>
+                    <Filter />
+                    <div className='list-task'>
+                        <table className="table table-bordered">
+                            <thead>
+                                <tr className='info'>
+                                    <th scope="col">STT</th>
+                                    <th scope="col">Tên</th>
+                                    <th scope="col">Trạng thái</th>
+                                    <th scope="col">Hành động</th>
+                                </tr>
+                            </thead>
+                            <ListTask />
+                            <ListTask />
+                        </table>
+                    </div>
                 </div>
-            </div>;
-    }
-    
+            </div>
+        </div>
+    )
 }
+
 
 export default App;
