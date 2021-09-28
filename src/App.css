@@ -74,6 +74,7 @@ h1, h2, h3, h4, h5, h6 {
 .mg-bottom {
     margin-bottom: 2rem;
 }
+
 .table-bordered>thead>tr>th {
     border-bottom-width: 0;
 }
