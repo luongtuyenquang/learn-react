@@ -2,13 +2,16 @@ import React from "react";
 import { Component } from "react";
 
 class AddTask extends Component {
+    handleCloseForm = () => {
+        this.props.closeForm()
+    }
     render(){
         return  (
             <React.Fragment>
                 <div className='add-task'>
                     <div className='add-task__heading'>
                         <h3 className='add-task__heading-title'>Thêm công việc</h3>
-                        <i className="far fa-times-circle icon-close"></i>
+                        <i className="far fa-times-circle icon-close" onClick={this.handleCloseForm}></i>
                     </div>
                     <div className='add-task__form'>
                         <div className="form-group">

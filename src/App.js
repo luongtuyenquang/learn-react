@@ -10,7 +10,8 @@ class App extends Component {
     constructor(){
         super()
         this.state = {
-            tasks: []
+            tasks: [],
+            isDisplayForm: true
         }
     }
     componentDidMount(){
@@ -51,18 +52,29 @@ class App extends Component {
         })
         localStorage.setItem('tasks', JSON.stringify(tasks))
     }
+    handleToggleForm = () => {
+        this.setState({
+            isDisplayForm: !this.state.isDisplayForm
+        })
+    }
     render(){
         const tasks = this.state.tasks
-
+        const isDisplayForm = this.state.isDisplayForm
+        const elmFormAddTask = isDisplayForm ? <AddTask closeForm={this.handleToggleForm}/> : ''
         return (
             <div className='container'>
                 <Title />
                 <div className='row'>
-                    <div className='col-xs-4 col-sm-4 col-md-4 col-lg-4'>
-                        <AddTask />
+                    <div className={isDisplayForm ? 'col-xs-4 col-sm-4 col-md-4 col-lg-4' : ''}>
+                        {elmFormAddTask}
                     </div>
-                    <div className='col-xs-8 col-sm-8 col-md-8 col-lg-8'>
-                    <button type="button" className="btn btn-primary btn-bottom btn-right">
+                    <div className={isDisplayForm ? 'col-xs-8 col-sm-8 col-md-8 col-lg-8' :
+                        'col-xs-12 col-sm-12 col-md-12 col-lg-12'}>
+                    <button 
+                        type="button" 
+                        className="btn btn-primary btn-bottom btn-right"
+                        onClick={this.handleToggleForm}
+                    >
                         <i className="fas fa-plus"></i>
                         Thêm công việc
                     </button>
