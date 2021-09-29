@@ -11,7 +11,8 @@ class App extends Component {
         super()
         this.state = {
             tasks: [],
-            isDisplayForm: true
+            isDisplayForm: true,
+            updateTask: null
         }
     }
     componentDidMount(){
@@ -53,17 +54,34 @@ class App extends Component {
         localStorage.setItem('tasks', JSON.stringify(tasks))
     }
     handleToggleForm = () => {
-        this.setState({
-            isDisplayForm: !this.state.isDisplayForm
-        })
+        if(this.state.isDisplayForm && this.state.updateTask !== null){
+            this.setState({
+                isDisplayForm: true,
+                updateTask: null
+            })
+        }else {
+            this.setState({
+                isDisplayForm: !this.state.isDisplayForm,
+                updateTask: null
+            })
+        }
+        
     }
     handleSubmitForm = (data) => {
         const tasks = this.state.tasks
-        data.id = this.randomID()
+        if(data.id === ''){
+            data.id = this.randomID()
+            tasks.push(data)
+        }else {
+            let idTask = tasks.map((task) => {
+                return task.id
+            })
+            tasks[idTask.indexOf(data.id)] = data
+        }
         this.setState({
-            tasks: tasks
+            tasks: tasks,
+            updateTask: null
         })
-        tasks.push(data)
         localStorage.setItem('tasks', JSON.stringify(tasks))
     }
     handleDeleteTask = (index) => {
@@ -73,15 +91,28 @@ class App extends Component {
             tasks: tasks
         })
         localStorage.setItem('tasks', JSON.stringify(tasks))
-
-        
+    }
+    showTaskForm = () => {
+        this.setState({
+            isDisplayForm: true
+        })
+    }
+    handleUpdateForm = (task) => {
+        this.setState({
+            updateTask: task
+        })
+        this.showTaskForm()
     }
     render(){
         const tasks = this.state.tasks
         const isDisplayForm = this.state.isDisplayForm
         const elmFormAddTask = isDisplayForm 
-            ? <AddTask submitForm={this.handleSubmitForm} closeForm={this.handleToggleForm}/> 
-            : ''
+            ?   <AddTask 
+                    submitForm={this.handleSubmitForm} 
+                    closeForm={this.handleToggleForm}
+                    updateTask={this.state.updateTask}
+                /> 
+            :   ''
         return (
             <div className='container'>
                 <Title />
@@ -111,6 +142,7 @@ class App extends Component {
                         <ListTask 
                             tasks={tasks} 
                             deleteTask={this.handleDeleteTask}
+                            updateTask={this.handleUpdateForm}
                         />
                     </div>
                 </div>

@@ -5,6 +5,7 @@ class AddTask extends Component {
     constructor(){
         super()
         this.state = {
+            id: '',
             name: '',
             status: true
         }
@@ -33,12 +34,37 @@ class AddTask extends Component {
             status: true
         })
     }
+    componentDidMount(){
+        if(this.props.updateTask){
+            this.setState({
+                id: this.props.updateTask.id,
+                name: this.props.updateTask.name,
+                status: this.props.updateTask.status,
+            })
+        }
+    }
+    componentWillReceiveProps(nextProps){
+        if(nextProps && nextProps.updateTask){
+            this.setState({
+                id: nextProps.updateTask.id,
+                name: nextProps.updateTask.name,
+                status: nextProps.updateTask.status,
+            })
+        }else if(nextProps && nextProps.updateTask === null){
+            this.setState({
+                id: '',
+                name: '',
+                status: true
+            })
+        }
+    }
     render(){
+        const id = this.state.id
         return  (
             <React.Fragment>
                 <div className='add-task'>
                     <div className='add-task__heading'>
-                        <h3 className='add-task__heading-title'>Thêm công việc</h3>
+                        <h3 className='add-task__heading-title'>{id !== '' ? 'Cập nhật công việc' : 'Thêm công việc'}</h3>
                         <i className="far fa-times-circle icon-close" onClick={this.handleCloseForm}></i>
                     </div>
                     <form className='add-task__form' onSubmit={this.handleSubmit}>

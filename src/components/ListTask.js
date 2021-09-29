@@ -12,6 +12,7 @@ class ListTask extends Component {
                         key={task.id} 
                         index={index + 1}
                         deleteTask={this.props.deleteTask}
+                        updateTask={this.props.updateTask}
                     />
         })
         return  (

@@ -7,6 +7,9 @@ class TaskItem extends Component {
     deleteTask = () => {
         this.props.deleteTask(this.props.index)
     }
+    updateTask = () => {
+        this.props.updateTask(this.props.task)
+    }
     render(){
         let tasks = this.props.task
         let index = this.props.index
@@ -19,8 +22,20 @@ class TaskItem extends Component {
                         {tasks.status === true ? 'Kích hoạt' : 'Ẩn'}
                     </td>
                     <td>
-                        <button type="button" className="btn btn-warning btn-right">Sửa</button>
-                        <button type="button" className="btn btn-danger" onClick={this.deleteTask}>Xóa</button>
+                        <button 
+                            type="button" 
+                            className="btn btn-warning btn-right"
+                            onClick={this.updateTask}
+                        >
+                            Sửa
+                        </button>
+                        <button 
+                            type="button" 
+                            className="btn btn-danger" 
+                            onClick={this.deleteTask}
+                        >
+                            Xóa
+                        </button>
                     </td>
                 </tr>
             </tbody>
