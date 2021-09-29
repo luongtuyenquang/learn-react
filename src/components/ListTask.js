@@ -7,7 +7,12 @@ class ListTask extends Component {
     render(){
         const tasks = this.props.tasks
         const renderTasks = tasks.map((task, index) => {
-            return <TaskItem task={task} key={task.id} index={index + 1}/>
+            return <TaskItem 
+                        task={task} 
+                        key={task.id} 
+                        index={index + 1}
+                        deleteTask={this.props.deleteTask}
+                    />
         })
         return  (
             <div className='list-task'>

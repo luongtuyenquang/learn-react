@@ -66,6 +66,16 @@ class App extends Component {
         tasks.push(data)
         localStorage.setItem('tasks', JSON.stringify(tasks))
     }
+    handleDeleteTask = (index) => {
+        const tasks = this.state.tasks
+        tasks.splice(index -1 , 1)
+        this.setState({
+            tasks: tasks
+        })
+        localStorage.setItem('tasks', JSON.stringify(tasks))
+
+        
+    }
     render(){
         const tasks = this.state.tasks
         const isDisplayForm = this.state.isDisplayForm
@@ -98,7 +108,10 @@ class App extends Component {
                         Hiển thị dữ liệu
                     </button>
                         <Filter />
-                        <ListTask tasks={tasks} />
+                        <ListTask 
+                            tasks={tasks} 
+                            deleteTask={this.handleDeleteTask}
+                        />
                     </div>
                 </div>
             </div>

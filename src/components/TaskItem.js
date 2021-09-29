@@ -4,6 +4,9 @@
 import { Component } from "react";
 
 class TaskItem extends Component {
+    deleteTask = () => {
+        this.props.deleteTask(this.props.index)
+    }
     render(){
         let tasks = this.props.task
         let index = this.props.index
@@ -17,7 +20,7 @@ class TaskItem extends Component {
                     </td>
                     <td>
                         <button type="button" className="btn btn-warning btn-right">Sửa</button>
-                        <button type="button" className="btn btn-danger">Xóa</button>
+                        <button type="button" className="btn btn-danger" onClick={this.deleteTask}>Xóa</button>
                     </td>
                 </tr>
             </tbody>
