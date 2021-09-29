@@ -57,10 +57,21 @@ class App extends Component {
             isDisplayForm: !this.state.isDisplayForm
         })
     }
+    handleSubmitForm = (data) => {
+        const tasks = this.state.tasks
+        data.id = this.randomID()
+        this.setState({
+            tasks: tasks
+        })
+        tasks.push(data)
+        localStorage.setItem('tasks', JSON.stringify(tasks))
+    }
     render(){
         const tasks = this.state.tasks
         const isDisplayForm = this.state.isDisplayForm
-        const elmFormAddTask = isDisplayForm ? <AddTask closeForm={this.handleToggleForm}/> : ''
+        const elmFormAddTask = isDisplayForm 
+            ? <AddTask submitForm={this.handleSubmitForm} closeForm={this.handleToggleForm}/> 
+            : ''
         return (
             <div className='container'>
                 <Title />
