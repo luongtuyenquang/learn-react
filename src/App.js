@@ -12,7 +12,11 @@ class App extends Component {
         this.state = {
             tasks: [],
             isDisplayForm: true,
-            updateTask: null
+            updateTask: null,
+            filter: {
+                name: '',
+                status: 0
+            }
         }
     }
     componentDidMount(){
@@ -103,8 +107,22 @@ class App extends Component {
         })
         this.showTaskForm()
     }
+    handleSearch = (filterName, filterStatus) => {
+        filterStatus = Number(filterStatus)
+        this.setState({
+            filter: {
+                name: filterName,
+                status: filterStatus
+            }
+        })
+    }
+    handleSearchTask = (keyword) => {
+        this.setState({
+            keyword: keyword
+        })
+    }
     render(){
-        const tasks = this.state.tasks
+        let tasks = this.state.tasks
         const isDisplayForm = this.state.isDisplayForm
         const elmFormAddTask = isDisplayForm 
             ?   <AddTask 
@@ -113,6 +131,22 @@ class App extends Component {
                     updateTask={this.state.updateTask}
                 /> 
             :   ''
+        const filter = this.state.filter
+        if(filter){
+            if(filter.name){
+                tasks = tasks.filter((task) => {
+                    return task.name.toLowerCase().indexOf(filter.name.toLowerCase()) !== -1
+                })
+            }
+            tasks = tasks.filter((task) => {
+                if(filter.status === 0){
+                    return task
+                } else {
+                    const switchStatus = filter.status === 1 ? true : false
+                    return task.status === switchStatus
+                }
+            })
+        }
         return (
             <div className='container'>
                 <Title />
@@ -138,7 +172,9 @@ class App extends Component {
                         <i className="fas fa-plus"></i>
                         Hiển thị dữ liệu
                     </button>
-                        <Filter />
+                        <Filter 
+                            filterTask={this.handleSearch}
+                        />
                         <ListTask 
                             tasks={tasks} 
                             deleteTask={this.handleDeleteTask}

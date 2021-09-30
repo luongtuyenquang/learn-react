@@ -78,3 +78,9 @@ h1, h2, h3, h4, h5, h6 {
 .table-bordered>thead>tr>th {
     border-bottom-width: 0;
 }
+.sort {
+    display: flex;
+}
+.dropdown-toggle {
+    margin-right: 1rem;
+}
