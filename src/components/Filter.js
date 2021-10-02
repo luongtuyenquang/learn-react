@@ -27,6 +27,9 @@ class Filter extends Component {
             [name]: value
         })
     }
+    handleSort = (sortName, sortStatus) => {
+        this.props.sort(sortName, sortStatus)
+    }
     render(){
         return  (
             <div className='col-xs-12 col-sm-12 col-md-12 col-lg-12 margin-none mg-bottom'>
@@ -58,21 +61,35 @@ class Filter extends Component {
                                 <i className="fas fa-filter pd-left"></i>
                             </button>
                             <ul className="dropdown-menu" aria-labelledby="dropdownMenu1">
-                                <li><a href="#1">Từ A - Z</a></li>
-                                <li><a href="#1">Từ Z - A action</a></li>
+                                <li onClick={() => this.handleSort('name', 0)}>
+                                    <a href="#1">Tất cả
+                                        <i className={this.props.sortName === 'name' && this.props.sortStatus === 0 ? 'fas fa-check' : ''}></i>
+                                    </a>
+                                </li>
+                                <li onClick={() => this.handleSort('name', 1)}>
+                                    <a href="#1">Từ A - Z
+                                        <i className={this.props.sortName === 'name' && this.props.sortStatus === 1 ? 'fas fa-check' : ''}></i>
+                                    </a>
+                                </li>
+                                <li onClick={() => this.handleSort('name', -1)}>
+                                    <a href="#1">Từ Z - A
+                                        <i className={this.props.sortName === 'name' && this.props.sortStatus === -1 ? 'fas fa-check' : ''}></i>
+                                    </a>
+                                </li>
+                                <li><hr className="dropdown-divider" /></li>
+                                <li onClick={() => this.handleSort('status', 2)}>
+                                    <a className="dropdown-item" href="#1">
+                                        Trạng thái kích hoạt
+                                        <i className={this.props.sortName === 'status' && this.props.sortStatus === 2 ? 'fas fa-check' : ''}></i>
+                                    </a>
+                                </li>
+                                <li onClick={() => this.handleSort('status', -2)}>
+                                    <a className="dropdown-item" href="#1">
+                                        Trạng thái kích ẩn
+                                        <i className={this.props.sortName === 'status' && this.props.sortStatus === -2 ? 'fas fa-check' : ''}></i>
+                                    </a>
+                                </li>
                             </ul>
-                        </div>
-                        <div className="dropdown">
-                            <select 
-                                className="form-control" 
-                                name='filterStatus'
-                                value={this.state.filterStatus}
-                                onChange={this.handleFilter}
-                            >
-                                <option value={0}>Tất cả</option>
-                                <option value={1}>Kích hoạt</option>
-                                <option value={-1}>Ẩn</option>
-                            </select>
                         </div>
                     </div>
                 </div>

@@ -16,7 +16,9 @@ class App extends Component {
             filter: {
                 name: '',
                 status: 0
-            }
+            },
+            sortName: 'name',
+            sortStatus: 0
         }
     }
     componentDidMount(){
@@ -33,29 +35,6 @@ class App extends Component {
     randomID(){
         return this.randomString() + '-' + this.randomString() + '-' +
         this.randomString() + '-' + this.randomString() + '-' + this.randomString()
-    }
-    getData = () => {
-        const tasks = [
-            {
-                id: this.randomID(),
-                name: 'Học online',
-                status: true,
-            },
-            {
-                id: this.randomID(),
-                name: 'Học ReactJS',
-                status: false,
-            },
-            {
-                id: this.randomID(),
-                name: 'Đi chơi',
-                status: true,
-            }
-        ]
-        this.setState({
-            tasks: tasks
-        })
-        localStorage.setItem('tasks', JSON.stringify(tasks))
     }
     handleToggleForm = () => {
         if(this.state.isDisplayForm && this.state.updateTask !== null){
@@ -121,8 +100,16 @@ class App extends Component {
             keyword: keyword
         })
     }
+    handleSort = (sortName, sortStatus) => {
+        this.setState({
+            sortName: sortName,
+            sortStatus: sortStatus
+        })
+    }
     render(){
         let tasks = this.state.tasks
+        const sortName = this.state.sortName
+        const sortStatus = this.state.sortStatus
         const isDisplayForm = this.state.isDisplayForm
         const elmFormAddTask = isDisplayForm 
             ?   <AddTask 
@@ -147,6 +134,21 @@ class App extends Component {
                 }
             })
         }
+        if(sortName === 'name'){
+            tasks.sort((a, b) => {
+                if(a.name.toLowerCase() > b.name.toLowerCase()) return sortStatus
+                else if(a.name.toLowerCase() < b.name.toLowerCase()) return -sortStatus
+                else return ''
+            })
+        }
+        if(sortName === 'status'){
+            tasks = tasks.filter((task) => {
+                 if(sortStatus === 0) return task
+                 else if(sortStatus === 2) return task.status === true
+                 else if(sortStatus === -2) return task.status === false
+                 else return ''
+            })
+        }
         return (
             <div className='container'>
                 <Title />
@@ -164,16 +166,11 @@ class App extends Component {
                         <i className="fas fa-plus"></i>
                         Thêm công việc
                     </button>
-                    <button 
-                        type="button" 
-                        className="btn btn-primary btn-bottom"
-                        onClick={this.getData}
-                    >
-                        <i className="fas fa-plus"></i>
-                        Hiển thị dữ liệu
-                    </button>
                         <Filter 
                             filterTask={this.handleSearch}
+                            sort={this.handleSort}
+                            sortName={sortName}
+                            sortStatus={sortStatus}
                         />
                         <ListTask 
                             tasks={tasks} 

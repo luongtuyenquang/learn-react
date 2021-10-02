@@ -43,20 +43,25 @@ class AddTask extends Component {
             })
         }
     }
-    componentWillReceiveProps(nextProps){
-        if(nextProps && nextProps.updateTask){
-            this.setState({
-                id: nextProps.updateTask.id,
-                name: nextProps.updateTask.name,
-                status: nextProps.updateTask.status,
-            })
-        }else if(nextProps && nextProps.updateTask === null){
-            this.setState({
-                id: '',
-                name: '',
-                status: true
-            })
+    static getDerivedStateFromProps(props, state){
+        if (props.updateTask) {
+            if(props.updateTask.id !== state.id){
+                return {
+                id: props.updateTask.id,
+                name: props.updateTask.name,
+                status: props.updateTask.status,
+                }
+            }
+        }else{
+            if(state.id){
+                return {
+                    id: '',
+                    name: '',
+                    status: true
+                }
+            }
         }
+        return null
     }
     render(){
         const id = this.state.id
