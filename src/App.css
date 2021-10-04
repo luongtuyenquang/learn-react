@@ -92,3 +92,13 @@ hr {
 .fa-check {
     padding-left: 8px
 }
+
+div{
+    display: flex;
+    font-size: 40px;
+    margin: 0 auto;
+}
+p{
+    padding: 0 10px;
+    cursor: pointer;
+}
