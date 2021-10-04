@@ -95,10 +95,18 @@ hr {
 
 div{
     display: flex;
-    font-size: 40px;
-    margin: 0 auto;
+    font-size: 20px;
+    margin: 10px auto;
+    flex-direction: column;
 }
-p{
-    padding: 0 10px;
-    cursor: pointer;
+.group-form {
+    display: flex;
+    flex-direction: row;
+}
+input {
+    margin-left: 10px;
+}
+button {
+    width: 30%;
+    margin: 0 auto;
 }

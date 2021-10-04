@@ -1,27 +1,32 @@
 // import logo from './logo.svg';
 import './App.css';
-
 import { Component } from 'react';
 
 class Test extends Component {
     constructor(){
         super()
         this.state = {
-            isShow: true
+            usd: 0,
+            vnd: ''
         }
     }
-    handleClick = () => {
+    handleChange = (event) => {
         this.setState({
-            isShow: !this.state.isShow
+            vnd: event.target.value * 23000
         })
     }
     render(){
-        const show = this.state.isShow
+        
         return (
             <div>
-                <button onClick={this.handleClick}>{show ? 'Hiện' : 'Ẩn'}</button>
-                <p>{show ? '' : 'Hello World'}</p>
-                {show ? <div>Hiện ra (show = true)</div> : <div>Hiện ra (show = false)</div>}
+                <div className='group-form'>
+                    USD:
+                    <input type='test' onChange={this.handleChange}></input>
+                </div><br />
+                <div className='group-form'>
+                    VNĐ:
+                    <input type='test' placeholder={this.state.vnd}></input>
+                </div>
             </div>
         )
     }
