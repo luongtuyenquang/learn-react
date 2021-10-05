@@ -1,33 +1,27 @@
 // import logo from './logo.svg';
 import './App.css';
 import { Component } from 'react';
+import { TestContext } from './context/MyGlobalContext'
+import Form from './components/Form';
 
 class Test extends Component {
     constructor(){
         super()
         this.state = {
-            usd: 0,
-            vnd: ''
+            info: {
+                name: 'Luong Tuyen Quang',
+                age: 23,
+                address: 'Đà Lạt',
+            }
         }
-    }
-    handleChange = (event) => {
-        this.setState({
-            vnd: event.target.value * 23000
-        })
+        
     }
     render(){
-        
+        const value = this.state.info
         return (
-            <div>
-                <div className='group-form'>
-                    USD:
-                    <input type='test' onChange={this.handleChange}></input>
-                </div><br />
-                <div className='group-form'>
-                    VNĐ:
-                    <input type='test' placeholder={this.state.vnd}></input>
-                </div>
-            </div>
+            <TestContext.Provider value={value}>
+                <Form />
+            </TestContext.Provider>
         )
     }
     
