@@ -1,5 +1,5 @@
 // import logo from './logo.svg';
-import './App.css';
+import './App.scss';
 import Title from './components/Title';
 import AddTask from './components/AddTask';
 import Filter from './components/Filter';

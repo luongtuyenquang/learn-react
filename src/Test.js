@@ -1,31 +1,33 @@
 // import logo from './logo.svg';
-import './App.css';
-import { Component } from 'react';
-import { TestContext } from './context/MyGlobalContext'
-import Form from './components/Form';
+import './App.scss';
+import { Component, useState } from 'react';
 
-class Test extends Component {
-    constructor(){
-        super()
-        this.state = {
-            info: {
-                name: 'Luong Tuyen Quang',
-                age: 23,
-                address: 'Đà Lạt',
-            }
-        }
-        
+function ColorBox(){
+    const [color, setColor] = useState(() => {
+        const initColor = localStorage.getItem('color')
+        return initColor
+    })
+    function handleClickBox(){
+        const newColor = randomColor()
+        setColor(newColor)
+        localStorage.setItem('color', newColor)
     }
-    render(){
-        const value = this.state.info
-        return (
-            <TestContext.Provider value={value}>
-                <Form />
-            </TestContext.Provider>
-        )
+    function randomColor(){
+        const COLOR_LIST = ['deeppink', 'yellow', 'green', 'black']
+        const randomIndex = Math.floor(Math.random() * 4)
+        return COLOR_LIST[randomIndex]
     }
-    
+    return (
+        <div>
+            <div 
+                className='box-color'
+                style={{backgroundColor: color}}
+                onClick={handleClickBox}
+            >
+                <p className='box-color__text'>Click me</p>
+            </div>
+        </div>
+    )
 }
 
-
-export default Test;
+export default ColorBox;
