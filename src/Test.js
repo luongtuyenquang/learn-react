@@ -1,33 +1,39 @@
 // import logo from './logo.svg';
-import './App.scss';
+// import './App.scss';
 import { Component, useState } from 'react';
+import ToDoList from './hooks/TodoList';
+import ToDoForm from './hooks/ToDoForm';
 
-function ColorBox(){
-    const [color, setColor] = useState(() => {
-        const initColor = localStorage.getItem('color')
-        return initColor
-    })
-    function handleClickBox(){
-        const newColor = randomColor()
-        setColor(newColor)
-        localStorage.setItem('color', newColor)
+function Test(){
+    const [toDoList, setToDoList] = useState([
+        {id: 1, title: 'Nguyễn Văn A', age: 21},
+        {id: 2, title: 'Nguyễn Văn B', age: 22},
+        {id: 3, title: 'Nguyễn Văn C', age: 23},
+    ])
+    function handleClick(data){
+        const newToDoList = [...toDoList]
+        const index = newToDoList.findIndex((todo) => {
+            return todo.id === data.id
+        })
+        newToDoList.splice(index, 1)
+        setToDoList(newToDoList)
     }
-    function randomColor(){
-        const COLOR_LIST = ['deeppink', 'yellow', 'green', 'black']
-        const randomIndex = Math.floor(Math.random() * 4)
-        return COLOR_LIST[randomIndex]
+    function handleSubmit(data){
+        const newData = {
+            id: toDoList.length + 1,
+            ...data
+        }
+        const newToDoList = [...toDoList]
+        newToDoList.push(newData)
+        setToDoList(newToDoList)
+
     }
     return (
         <div>
-            <div 
-                className='box-color'
-                style={{backgroundColor: color}}
-                onClick={handleClickBox}
-            >
-                <p className='box-color__text'>Click me</p>
-            </div>
+            <ToDoForm submit={handleSubmit}/>
+            <ToDoList todos={toDoList} toDoClick={handleClick} />
         </div>
     )
 }
 
-export default ColorBox;
+export default Test;
