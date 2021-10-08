@@ -5,6 +5,7 @@ import PostList from './hooks/PostList';
 import Pagination from './hooks/Pagination';
 import queryString from 'query-string'
 import PostFilter from './hooks/PostFilter';
+import Clock from './hooks/Clock';
 
 function Test(){
     const [postList, setPostList] = useState([])
@@ -41,8 +42,14 @@ function Test(){
             title_like: value
         })
     }
+    const [show, setShow] = useState(true)
+    function handleHiddenClock(){
+        setShow(false)
+    }
     return (
         <div>
+            {show && <Clock />}
+            <button onClick={handleHiddenClock}>Hidden Clock</button>
             <PostFilter change={handleChange}/>
             <PostList posts={postList}/>
             <Pagination 
