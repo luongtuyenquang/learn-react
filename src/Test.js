@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import PostList from './hooks/PostList';
 import Pagination from './hooks/Pagination';
 import queryString from 'query-string'
+import PostFilter from './hooks/PostFilter';
 
 function Test(){
     const [postList, setPostList] = useState([])
@@ -14,7 +15,7 @@ function Test(){
     })
     const [filter, setFilter] = useState({
         _limit: 10,
-        _page: 1
+        _page: 1,
     })
     useEffect(() => {
         async function fetchAPI(){
@@ -33,8 +34,16 @@ function Test(){
             _page: newPage
         })
     }
+    function handleChange(value){
+        setFilter({
+            ...filter,
+            _page: 1,
+            title_like: value
+        })
+    }
     return (
         <div>
+            <PostFilter change={handleChange}/>
             <PostList posts={postList}/>
             <Pagination 
                 pagination={pagination}
