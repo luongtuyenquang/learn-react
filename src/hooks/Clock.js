@@ -2,7 +2,7 @@
 // import './App.scss';
 import { useEffect, useState, useRef } from 'react';
 
-function Clock(props){
+function useClock(){
     const [time, setTime] = useState('')
     function formatDate(date){
         const hours = `0${date.getHours()}`.slice(-2)
@@ -20,6 +20,12 @@ function Clock(props){
             clearInterval(removeInterval)
         }
     }, [])
+    return time
+    
+}
+
+function Clock(props){
+   const time = useClock()
     return (
         <div>
             <form>
