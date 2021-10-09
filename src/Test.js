@@ -6,6 +6,7 @@ import Pagination from './hooks/Pagination';
 import queryString from 'query-string'
 import PostFilter from './hooks/PostFilter';
 import Clock from './hooks/Clock';
+import { BoxColor } from './components/BoxColor';
 
 function Test(){
     const [postList, setPostList] = useState([])
@@ -46,6 +47,7 @@ function Test(){
     function handleHiddenClock(){
         setShow(false)
     }
+
     return (
         <div>
             {show && <Clock />}
@@ -56,6 +58,7 @@ function Test(){
                 pagination={pagination}
                 pageChange={handlePageChange}
             />
+            <BoxColor />
         </div>
     )
 }

@@ -16,6 +16,21 @@ h1, h2, h3, h4, h5, h6 {
     display: flex;
     margin: 5rem auto 0;
     cursor: pointer;
+    &__item {
+        $size: 20rem;
+
+        width: $size;
+        height: $size;
+        border-radius: 8px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 2rem;
+        color: white;
+
+        transition: all 0.3s linear;
+
+    }
     &__text {
         color: white;
         display: flex;
@@ -25,3 +40,4 @@ h1, h2, h3, h4, h5, h6 {
         font-size: 2rem;
     }
 }
+
