@@ -1,10 +1,11 @@
 // import logo from './logo.svg';
-import './App.scss';
+import './App.css';
 import Title from './components/Title';
 import AddTask from './components/AddTask';
 import Filter from './components/Filter';
 import ListTask from './components/ListTask';
 import { Component } from 'react';
+import Demo from './learn-redux/Demo'
 
 class App extends Component {
     constructor(){
