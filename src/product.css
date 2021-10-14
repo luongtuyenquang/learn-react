@@ -47,3 +47,16 @@ img {
 .total-cart--right {
     padding-right: 15px;
 }
+.rating-list {
+    display: flex;
+    justify-content: center;
+}
+.rating-item {
+    list-style-type: none;
+}
+.star-color {
+    color: #d3d313;
+}
+.start-color--blur {
+    color: #a5a506;
+}
