@@ -60,3 +60,20 @@ img {
 .start-color--blur {
     color: #a5a506;
 }
+.btn-label {
+    cursor: pointer;
+    background-color: #dfdfdf;
+    padding: 2px 15px 2px 15px;
+}
+.label-group {
+    margin-left: 15px;
+}
+.btn-label--left {
+    border-bottom-left-radius: 10px;
+    border-top-left-radius: 10px;
+}
+.btn-label--right {
+    border-bottom-right-radius: 10px;
+    border-top-right-radius: 10px;
+    border-left: 1px solid #b1b1b1;
+}

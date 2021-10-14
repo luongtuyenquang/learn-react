@@ -1,7 +1,13 @@
 import CartItem from "./CartItem"
 import TotalCart from "./TotalCart"
 
-function Carts() {
+function Carts(props) {
+    const { carts } = props
+
+    function showCart(){
+        return carts.map((cart, index) => <CartItem cart={cart} key={index} />)
+    }
+
     return (
         <section>
             <table className="table">
@@ -16,12 +22,10 @@ function Carts() {
                 </tr>
             </thead>
             <tbody>
-                <CartItem />
-                <CartItem />
-                <CartItem />
+                { showCart() }
             </tbody>
             </table>
-            <TotalCart />
+            <TotalCart carts={carts}/>
         </section>
     )
 }

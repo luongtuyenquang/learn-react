@@ -1,16 +1,26 @@
 
-function CartItem() {
+function CartItem(props) {
+    const { product } = props.cart
+    const { quantity } = props.cart
+
+    function subTotal(price, quantity) {
+        return price * quantity
+    }
     return (
         <tr>
             <td>
-                <img src="https://salt.tikicdn.com/cache/400x400/ts/product/b0/39/57/a5c7b46a18cd2e077fb2d805ed600e67.jpg" className="card-img-top cart-img" alt="..." />
+                <img src={product.image} className="card-img-top cart-img" alt="..." />
             </td>
-            <td>iPhone 11 Pro Max</td>
-            <td>15$</td>
-            <td>
-                + -
+            <td>{product.name}</td>
+            <td>{product.price}$</td>
+            <td className='quantity'>
+                <span>{quantity}</span>
+                <span className='label-group'>
+                    <label className='btn-label btn-label--left'>+</label>
+                    <label className='btn-label btn-label--right'>-</label>
+                </span>
             </td>
-            <td>15$</td>
+            <td>{subTotal(product.price, quantity)}$</td>
             <td>
                 <button type="button" className="btn btn-danger">Hủy bỏ</button>
             </td>

@@ -2,8 +2,7 @@ import './product.css'
 import Header from "./components/Header"
 import Message from './components/Message'
 import ProductContainer from './components/containers/ProductContainer'
-import Carts from './components/carts/Carts'
-
+import CartContainer from './components/containers/CartContainer'
 
 function App(){
     return (
@@ -11,7 +10,7 @@ function App(){
             <Header />
             <div className='container'>
                 <ProductContainer />
-                <Carts />
+                <CartContainer />
             </div>
             <Message />
             
