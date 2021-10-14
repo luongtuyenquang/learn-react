@@ -1,7 +1,7 @@
 import './product.css'
 import Header from "./components/Header"
-import Products from "./components/products/Products"
 import Message from './components/Message'
+import ProductContainer from './components/containers/ProductContainer'
 import Carts from './components/carts/Carts'
 
 
@@ -10,7 +10,7 @@ function App(){
         <div className='app'>
             <Header />
             <div className='container'>
-                <Products />
+                <ProductContainer />
                 <Carts />
             </div>
             <Message />

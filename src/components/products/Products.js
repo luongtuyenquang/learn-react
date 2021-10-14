@@ -1,9 +1,8 @@
 import ProductItem from "./ProductItem"
-import { connect } from 'react-redux'
-
 
 function Products(props){
     const products = props.products
+    
     function showProduct(products){
         return products.map((product, index) => {
             return <ProductItem key={index} product={product}/>
@@ -18,10 +17,4 @@ function Products(props){
         </section>
     )
 }
-
-const mapStateToProps = state => {
-    return {
-        products: state.products
-    }
-}
-export default connect(mapStateToProps, null)(Products)
+export default Products
