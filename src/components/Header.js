@@ -1,22 +1,24 @@
 import React from "react";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
-import Home from './Home'
 import About from './About'
+import Contact from './Contact'
 
 function Header(){
     return (
         <Router>
             <nav className="navbar navbar-inverse">
                 <div className="container-fluid">
-                    <div className="navbar-header">
-                        <button type="button" className="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-                        </button>
-                        <a className="navbar-brand" href="#1">Trang chủ</a>
-                    </div>
                     <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                         <ul className="nav navbar-nav">
-                            <li><a href="#1">About</a></li>
-                            <li><a href="#1">Contact</a></li>
+                        <li>
+                            <Link to="/">Home</Link>
+                        </li>
+                        <li>
+                            <Link to="/about">About</Link>
+                        </li>
+                        <li>
+                            <Link to="/contact">Contact</Link>
+                        </li>
                             <li className="dropdown">
                                 <a href="#1" className="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span className="caret"></span></a>
                                 <ul className="dropdown-menu">
@@ -29,8 +31,13 @@ function Header(){
                     </div>
                 </div>
             </nav>
-            <Route path='/' exact component={Home} />
-            <Route path='/about' component={About} />
+            <Route path='/' />
+            <Route path='/about'>
+                <About />
+            </Route>
+            <Route path='/contact'>
+                <Contact />
+            </Route>
         </Router>
     )
 }
