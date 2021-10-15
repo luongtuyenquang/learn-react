@@ -1,8 +1,23 @@
 import React from "react";
-import { BrowserRouter as Router, Switch, Route, NavLink } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route, NavLink, Link } from "react-router-dom";
 import About from './About'
 import Contact from './Contact'
 import '../App.css'
+
+const MenuLink = ({ label, to, exact }) => {
+    return (
+        <Route path={to} exact={exact} children={({match}) => {
+            const active = match ? 'active abc' : ''
+            return (
+                <li className={active}>
+                    <Link to={to} className='link'>
+                        {label}
+                    </Link>
+                </li>
+            )
+        }}/>
+    )
+}
 
 function Header(){
     return (
@@ -11,15 +26,9 @@ function Header(){
                 <div className="container-fluid">
                     <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                         <ul className="nav navbar-nav">
-                        <li>
-                            <NavLink exact activeClassName='active' to="/">Home</NavLink>
-                        </li>
-                        <li>
-                            <NavLink activeClassName='active' to="/about">About</NavLink>
-                        </li>
-                        <li>
-                            <NavLink activeClassName='active' to="/contact">Contact</NavLink>
-                        </li>
+                            <MenuLink label='Home' to='/' exact={true} />
+                            <MenuLink label='About' to='/about' exact={false} />
+                            <MenuLink label='Contact' to='/contact' exact={false} />
                             <li className="dropdown">
                                 <a href="#1" className="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span className="caret"></span></a>
                                 <ul className="dropdown-menu">
