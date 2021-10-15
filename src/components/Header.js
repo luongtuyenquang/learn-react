@@ -2,22 +2,8 @@ import React from "react";
 import { BrowserRouter as Router, Switch, Route, NavLink, Link } from "react-router-dom";
 import About from './About'
 import Contact from './Contact'
+import NotFound from './NotFound'
 import '../App.css'
-
-const MenuLink = ({ label, to, exact }) => {
-    return (
-        <Route path={to} exact={exact} children={({match}) => {
-            const active = match ? 'active abc' : ''
-            return (
-                <li className={active}>
-                    <Link to={to} className='link'>
-                        {label}
-                    </Link>
-                </li>
-            )
-        }}/>
-    )
-}
 
 function Header(){
     return (
@@ -26,9 +12,15 @@ function Header(){
                 <div className="container-fluid">
                     <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                         <ul className="nav navbar-nav">
-                            <MenuLink label='Home' to='/' exact={true} />
-                            <MenuLink label='About' to='/about' exact={false} />
-                            <MenuLink label='Contact' to='/contact' exact={false} />
+                            <li>
+                                <NavLink to='/' exact >Home</NavLink>
+                            </li>
+                            <li>
+                                <NavLink to='/about' >About</NavLink>
+                            </li>
+                            <li>
+                                <NavLink to='/contact' >Contact</NavLink>
+                            </li>
                             <li className="dropdown">
                                 <a href="#1" className="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span className="caret"></span></a>
                                 <ul className="dropdown-menu">
@@ -41,13 +33,18 @@ function Header(){
                     </div>
                 </div>
             </nav>
-            <Route path='/' />
-            <Route path='/about'>
-                <About />
-            </Route>
-            <Route path='/contact'>
-                <Contact />
-            </Route>
+            <Switch>
+                <Route path='/' exact />
+                <Route path='/about'>
+                    <About />
+                </Route>
+                <Route path='/contact'>
+                    <Contact />
+                </Route>
+                <Route path="*">
+                    <NotFound />
+                </Route> 
+            </Switch>
         </Router>
     )
 }
