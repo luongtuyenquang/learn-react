@@ -92,3 +92,6 @@ hr {
 .fa-check {
     padding-left: 8px
 }
+.active {
+    border-bottom: 4px solid red;
+}

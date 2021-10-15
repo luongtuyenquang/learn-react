@@ -1,7 +1,8 @@
 import React from "react";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route, NavLink } from "react-router-dom";
 import About from './About'
 import Contact from './Contact'
+import '../App.css'
 
 function Header(){
     return (
@@ -11,13 +12,13 @@ function Header(){
                     <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                         <ul className="nav navbar-nav">
                         <li>
-                            <Link to="/">Home</Link>
+                            <NavLink exact activeClassName='active' to="/">Home</NavLink>
                         </li>
                         <li>
-                            <Link to="/about">About</Link>
+                            <NavLink activeClassName='active' to="/about">About</NavLink>
                         </li>
                         <li>
-                            <Link to="/contact">Contact</Link>
+                            <NavLink activeClassName='active' to="/contact">Contact</NavLink>
                         </li>
                             <li className="dropdown">
                                 <a href="#1" className="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span className="caret"></span></a>
