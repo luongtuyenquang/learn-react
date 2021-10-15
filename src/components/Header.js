@@ -1,8 +1,7 @@
 import React from "react";
-import { BrowserRouter as Router, Switch, Route, NavLink, Link } from "react-router-dom";
-import About from './About'
-import Contact from './Contact'
-import NotFound from './NotFound'
+import { BrowserRouter as Router, NavLink } from "react-router-dom";
+import Routes from "./Routes";
+
 import '../App.css'
 
 function Header(){
@@ -33,18 +32,7 @@ function Header(){
                     </div>
                 </div>
             </nav>
-            <Switch>
-                <Route path='/' exact />
-                <Route path='/about'>
-                    <About />
-                </Route>
-                <Route path='/contact'>
-                    <Contact />
-                </Route>
-                <Route path="*">
-                    <NotFound />
-                </Route> 
-            </Switch>
+            <Routes />
         </Router>
     )
 }
