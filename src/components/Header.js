@@ -20,6 +20,9 @@ function Header(){
                             <li>
                                 <NavLink to='/contact' >Contact</NavLink>
                             </li>
+                            <li>
+                                <NavLink to='/products' >Product</NavLink>
+                            </li>
                             <li className="dropdown">
                                 <a href="#1" className="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span className="caret"></span></a>
                                 <ul className="dropdown-menu">
