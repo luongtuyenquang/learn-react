@@ -2,7 +2,7 @@ import { Route, Switch } from "react-router-dom";
 import About from './About'
 import Contact from './Contact'
 import NotFound from './NotFound'
-import Products from "./Products";
+import FormValue from "./Form";
 
 function Routes() {
     return (
@@ -14,8 +14,8 @@ function Routes() {
             <Route path='/contact'>
                 <Contact />
             </Route>
-            <Route path='/products'>
-                <Products />
+            <Route path='/form'>
+                <FormValue />
             </Route>
             <Route path="*">
                 <NotFound />

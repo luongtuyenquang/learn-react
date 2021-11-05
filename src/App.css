@@ -95,3 +95,8 @@ hr {
 .active {
     border-bottom: 4px solid red;
 }
+
+.App {
+    padding-left: 50px;
+    margin-top: 50px;
+}
