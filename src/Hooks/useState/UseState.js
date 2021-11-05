@@ -2,7 +2,7 @@ import { useState } from "react"
 
 export default function UseState(){
 
-    // Two-way binding and Example: Radio
+    // Two-way binding and Example: type Checkbox
     const courses = [
         {
             id: 1,
@@ -19,10 +19,21 @@ export default function UseState(){
     ]
     const [checked, setChecked] = useState('')
 
+    function handleChecked(id){
+        setChecked(prev => {
+            const isChecked = checked.includes(id)
+            if(isChecked){
+                return checked.filter(item => item !== id)
+            }else {
+                return [...prev, id]
+            }
+        })
+    }
+
     function handleSubmit(){
         console.log(checked);
     }
-   
+
     return (
         <div className='App'>
             <div style={{display: "grid"}}>
@@ -30,7 +41,10 @@ export default function UseState(){
                     courses.map(course => {
                         return (
                             <label key={course.id}>
-                                <input type='radio' checked={checked === course.id} onChange={() => setChecked(course.id)} /> {course.name}
+                                <input type='checkbox' 
+                                    checked={checked.includes(course.id)} 
+                                    onChange={() => handleChecked(course.id)} 
+                                /> {course.name}
                             </label>
                         )
                     })
