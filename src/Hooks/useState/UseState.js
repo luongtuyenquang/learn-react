@@ -2,55 +2,45 @@ import { useState } from "react"
 
 export default function UseState(){
 
-    // Two-way binding and Example: type Checkbox
-    const courses = [
-        {
-            id: 1,
-            name: 'HTML'
-        },
-        {
-            id: 2,
-            name: 'CSS'
-        },
-        {
-            id: 3,
-            name: 'Javascript'
-        },
-    ]
-    const [checked, setChecked] = useState('')
+    // useState - Two-way binding and Example: To Do List
+   
+    const [job, setJob] = useState('')
+    const [jobs, setJobs] = useState(() => {
+        const initialState = JSON.parse(localStorage.getItem('jobs')) ?? []
+        return initialState
+    })
 
-    function handleChecked(id){
-        setChecked(prev => {
-            const isChecked = checked.includes(id)
-            if(isChecked){
-                return checked.filter(item => item !== id)
-            }else {
-                return [...prev, id]
-            }
+    function handleAddJob(){
+        setJobs(prev => {
+            const newJobs = [...prev, job]
+            const stringJobs = JSON.stringify(newJobs)
+            localStorage.setItem('jobs', stringJobs)
+            return newJobs
         })
+        setJob('')
     }
 
-    function handleSubmit(){
-        console.log(checked);
+    function handleDelete(index){
+        jobs.splice(index, 1)
+        setJobs(prev => [...prev])
+        localStorage.setItem('jobs', JSON.stringify(jobs))
     }
-
+    console.log(jobs);
     return (
         <div className='App'>
-            <div style={{display: "grid"}}>
+            <input type='text' onChange={(e) => setJob(e.target.value)} value={job}/>
+            <ul>
                 {
-                    courses.map(course => {
+                    jobs.map((job, index) => {
                         return (
-                            <label key={course.id}>
-                                <input type='checkbox' 
-                                    checked={checked.includes(course.id)} 
-                                    onChange={() => handleChecked(course.id)} 
-                                /> {course.name}
-                            </label>
+                            <li key={index}>{job}
+                                <span style={{cursor: "pointer"}} onClick={() => handleDelete(index)}> xóa</span>
+                            </li>
                         )
                     })
                 }
-            </div>
-            <button onClick={handleSubmit}>Submit</button>
+            </ul>
+            <button onClick={handleAddJob}>Add</button>
         </div>
     )
 } 
