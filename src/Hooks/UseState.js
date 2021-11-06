@@ -25,7 +25,7 @@ export default function UseState(){
         setJobs(prev => [...prev])
         localStorage.setItem('jobs', JSON.stringify(jobs))
     }
-    console.log(jobs);
+    
     return (
         <div className='App'>
             <input type='text' onChange={(e) => setJob(e.target.value)} value={job}/>
