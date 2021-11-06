@@ -100,3 +100,7 @@ hr {
     padding-left: 50px;
     margin-top: 50px;
 }
+.active-tab {
+    color: white;
+    background-color: black;
+}
