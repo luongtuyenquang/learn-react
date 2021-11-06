@@ -104,3 +104,14 @@ hr {
     color: white;
     background-color: black;
 }
+.back-to-top {
+    background-color: #d34949;
+    border: none;
+    outline: none;
+    padding: 5px;
+    color: white;
+    font-weight: bold;
+    position: fixed;
+    right: 20px;
+    bottom: 30px;
+}
