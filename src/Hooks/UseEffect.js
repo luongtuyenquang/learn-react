@@ -2,23 +2,28 @@ import { useEffect, useState } from "react"
 
 export default function UseEffect(){
 
-    // useEffect: Resize
-   const [widthScreen, setWidthScreen] = useState(window.innerWidth)
+    // useEffect: Timer (setTimeOut, setInterval)
+   const [show, setShow] = useState(false)
+   const [countdown, setCountDown] = useState(10)
+
+    const handleClick = () => {
+        setShow(!show)
+    }
 
     useEffect(() => {
-        const handleResize = () => {
-            setWidthScreen(window.innerWidth)
-        }
-        window.addEventListener('resize', handleResize)
-
+        const clearTimer = setInterval(() => {
+            if(countdown === 0) setCountDown(10)
+            else setCountDown(countdown - 1)
+        }, 1000)
         return () => {
-            window.removeEventListener('resize', handleResize)
+            clearInterval(clearTimer)
         }
-    }, [])
+    }, [countdown])
 
     return (
         <div className='App'>
-           <h1>{widthScreen}</h1>
+            <button onClick={handleClick}>{show === false ? 'Hiện' : 'Ẩn'}</button>
+           {show && <h1>{countdown}</h1>}
         </div>
     )
 } 
