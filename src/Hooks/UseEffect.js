@@ -2,28 +2,32 @@ import { useEffect, useState } from "react"
 
 export default function UseEffect(){
 
-    // useEffect: Timer (setTimeOut, setInterval)
-   const [show, setShow] = useState(false)
-   const [countdown, setCountDown] = useState(10)
+    // useEffect - Example: Preview Avatar
+    const [show, setShow] = useState(false)
+    const [avatar, setAvatar] = useState()
 
     const handleClick = () => {
         setShow(!show)
     }
 
+    const handlePreviewAvatar = (e) => {
+        const file = e.target.files[0]
+        const img = URL.createObjectURL(file)
+        setAvatar(img);
+    }
+
     useEffect(() => {
-        const clearTimer = setInterval(() => {
-            if(countdown === 0) setCountDown(10)
-            else setCountDown(countdown - 1)
-        }, 1000)
+        
         return () => {
-            clearInterval(clearTimer)
+            URL.revokeObjectURL(avatar)
         }
-    }, [countdown])
+    }, [avatar])
 
     return (
         <div className='App'>
             <button onClick={handleClick}>{show === false ? 'Hiện' : 'Ẩn'}</button>
-           {show && <h1>{countdown}</h1>}
+            {show && <input type='file' onChange={handlePreviewAvatar} />}
+            <img src={avatar} width='300px' alt={''}/>
         </div>
     )
 } 
