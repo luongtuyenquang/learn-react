@@ -1,37 +1,18 @@
-import { useRef, useState } from "react"
+import { useRef } from "react"
 
 export default function UseEffect(){
 
-    // useRef - Example: Start, Stop CountDown
-    const [show, setShow] = useState(false)
-    const [count, setCount] = useState(60)
-    const [status, setStatus] = useState(false)
-    let timer = useRef()
+    // useRef - Example: Focus vào ô input khi click vào label
+    const inputRef = useRef()
 
-    const handleClick = () => {
-        setShow(!show)
-    }
-
-    const handleStart = () => {
-        timer.current = setInterval(() => {
-            setCount(prev => prev - 1)
-        }, 1000)
-        setStatus(true)
-    }
-    
-    const handleStop = () => {
-        clearInterval(timer.current)
-        setStatus(false)
+    const handleFocus = () => {
+        inputRef.current.focus()
     }
 
     return (
         <div className='App'>
-            <button onClick={handleClick}>{show === false ? 'Hiện' : 'Ẩn'}</button>
-            {show && 
-                <div>
-                    <h3>{count}</h3>
-                    <button onClick={status === false ? handleStart : handleStop}>{status === false ? 'Start' : 'Stop'}</button>
-                </div>}
+            <h3 onClick={handleFocus}>Nhập tên vào ô dưới đây:</h3>
+            <input type='text' ref={inputRef} />
         </div>
     )
 } 
