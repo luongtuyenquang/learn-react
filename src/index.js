@@ -6,7 +6,7 @@ import reportWebVitals from './reportWebVitals';
 // import Form from './Form';
 // import { Provider } from 'react-redux'
 // import store from './store/index'
-import UseCallback from './Hooks/UseCallback'
+import UseMemo from './Hooks/UseMemo'
 
 ReactDOM.render(
     <React.StrictMode>
@@ -14,7 +14,7 @@ ReactDOM.render(
             <App />
         </Provider> */}
         {/* <Form /> */}
-        <UseCallback />
+        <UseMemo />
     </React.StrictMode>,
     document.getElementById('root')
 );
