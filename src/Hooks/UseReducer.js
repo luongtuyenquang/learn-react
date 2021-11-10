@@ -1,10 +1,12 @@
 import { useReducer, useRef } from "react"
 
+// Khởi tạo
 const initialState = {
     inputJob: '',
     jobs: []
 }
 
+// Constants
 const SET_INPUT_JOB = 'set_input_job'
 const ADD_JOB = 'add_job'
 const DELETE_JOB = 'delete_job'
@@ -31,7 +33,7 @@ const deleteJob = payload => {
 }
 
 const reducer = (state = initialState, action) => {
-    switch(action.type){
+    switch(action.type) {
         case SET_INPUT_JOB:
             return {
                 ...state,
@@ -52,36 +54,33 @@ const reducer = (state = initialState, action) => {
         default: throw new Error('Invalid Action')
     }
 }
-export default function UseReducer(){
 
-    const [job, dispatch] = useReducer(reducer, initialState)
+export default function UseReducer(){
+    const [state, dispatch] = useReducer(reducer, initialState)
     const inputRef = useRef()
 
     const handleSubmit = () => {
-        dispatch(addJob(job.inputJob))
+        dispatch(addJob(state.inputJob))
         dispatch(setInputJob(''))
         inputRef.current.focus()
     }
+    
     return (
         <div style={{margin: 20}}>
-           <input type='text' placeholder='Nhập tên công việc' 
-                ref={inputRef}
-                value={job.inputJob}
-                onChange={(e) => dispatch(setInputJob(e.target.value))}
-                />
-           <button onClick={handleSubmit}>Add</button>
-           <ul>
-               {
-                   job.jobs.map((job, index) => {
-                       return (
+            <input type='text' ref={inputRef} value={state.inputJob} onChange={(e) => dispatch(setInputJob(e.target.value))} />
+            <button onClick={handleSubmit}>Add</button>
+            <ul>
+                {
+                    state.jobs.map((job, index) => {
+                        return (
                             <li key={index}>
-                                {job} 
-                                <span style={{cursor: "pointer"}} onClick={() => dispatch(deleteJob(index))}>X</span>
+                                {job}
+                                <span style={{cursor: "pointer", marginLeft: 10}} onClick={() => dispatch(deleteJob(index))}>X</span>
                             </li>
-                       )
-                   })
-               }
-           </ul>
+                        )
+                    })
+                }
+            </ul>
         </div>
     )
 }

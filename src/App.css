@@ -115,3 +115,7 @@ hr {
     right: 20px;
     bottom: 30px;
 }
+.dark {
+    background-color: black;
+    color: white;
+}

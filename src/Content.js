@@ -1,12 +1,17 @@
-import { memo } from "react";
+import UseContext from "./Hooks/UseContext"
+import { useState } from "react"
+import {ThemeContext} from './GlobalContext'
 
-function Content({ onIncrease }){
+
+export default function Content(){
+    const [theme, setTheme] = useState('light')
     
-    console.log('content');
-
     return (
-        <button onClick={onIncrease}>Increase</button>
+        <ThemeContext.Provider value={theme}>
+            <div className='App'>
+                <button onClick={() => setTheme(theme === 'light' ? 'dark' : 'light')}>Toggle Theme</button>
+                <UseContext />
+            </div>
+        </ThemeContext.Provider>
     )
 }
-
-export default memo(Content)
