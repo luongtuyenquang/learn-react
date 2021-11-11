@@ -6,8 +6,7 @@ import reportWebVitals from './reportWebVitals';
 // import Form from './Form';
 // import { Provider } from 'react-redux'
 // import store from './store/index'
-import UseContext from './Hooks/UseContext'
-import Provider from './store/Provider'
+import UseRef from './Hooks/UseRef'
 
 ReactDOM.render(
     <React.StrictMode>
@@ -15,10 +14,7 @@ ReactDOM.render(
             <App />
         </Provider> */}
         {/* <Form /> */}
-        <Provider>
-            <UseContext />
-        </Provider>
-
+        <UseRef />
     </React.StrictMode>,
     document.getElementById('root')
 );
