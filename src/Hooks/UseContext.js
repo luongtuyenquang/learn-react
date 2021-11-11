@@ -1,10 +1,40 @@
-import { useContext } from "react"
-import { ThemeContext } from "../GlobalContext"
+import { useContext, useRef } from "react"
+import GlobalContext from "../store/GlobalContext"
+import { setInputTodo, addTodo, deleteTodo } from "../store/actions"
 
 export default function UseContext(){
+
+    const [state, dispatch] = useContext(GlobalContext)
+    const inputRef = useRef()
     
-    const theme = useContext(ThemeContext)
+    const {inputTodo, todos} = state
+
+    const handleSubmit = () => {
+        dispatch(addTodo(inputTodo))
+        dispatch(setInputTodo(''))
+        inputRef.current.focus()
+    }
+
     return (
-        <p className={theme === 'dark' ? 'dark' : ''}>Văn bản là một loại hình phương tiện để ghi nhận, lưu giữ và truyền đạt các thông tin từ chủ thể này sang chủ thể khác bằng ký hiệu gọi là chữ viết. Nó gồm tập hợp các câu có tính trọn vẹn về nội dung,</p>
+        <div className='App'>
+            <input type='text' 
+                value={inputTodo}
+                onChange={(e) => dispatch(setInputTodo(e.target.value))}
+                ref={inputRef}
+            />
+            <button onClick={handleSubmit}>Add</button>
+            <ul>
+               {
+                   todos.map((todo, index) => {
+                       return (
+                            <li key={index}>
+                                {todo}
+                                <span style={{cursor: "pointer"}} onClick={() => dispatch(deleteTodo(index))}> X</span>
+                            </li>
+                       )
+                   })
+               }
+            </ul>
+        </div>
     )
 }
